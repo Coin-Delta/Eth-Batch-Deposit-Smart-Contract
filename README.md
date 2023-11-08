@@ -29,7 +29,7 @@ To run lockup service, install [Homebrew](https://brew.sh), [Node.js](https://no
     npm install -g @openzeppelin/contracts
     mkdir projects
     cd projects
-    git clone https://github.com/CoinDeltafinance/CoinDelta-eth2depositor
+    git clone https://github.com/CoinDelta/CoinDelta-eth2depositor
     cd CoinDelta-eth2depositor
     truffle init
 
