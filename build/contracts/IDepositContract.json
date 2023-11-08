@@ -1,0 +1,638 @@
+{
+  "contractName": "IDepositContract",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "pubkey",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "withdrawal_credentials",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "amount",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "index",
+          "type": "bytes"
+        }
+      ],
+      "name": "DepositEvent",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "pubkey",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "withdrawal_credentials",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "deposit_data_root",
+          "type": "bytes32"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "get_deposit_root",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "get_deposit_count",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"pubkey\",\"type\":\"bytes\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"withdrawal_credentials\",\"type\":\"bytes\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"amount\",\"type\":\"bytes\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"index\",\"type\":\"bytes\"}],\"name\":\"DepositEvent\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"pubkey\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"withdrawal_credentials\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"deposit_data_root\",\"type\":\"bytes32\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_deposit_count\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_deposit_root\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"deposit(bytes,bytes,bytes,bytes32)\":{\"params\":{\"deposit_data_root\":\"The SHA-256 hash of the SSZ-encoded DepositData object. Used as a protection against malformed input.\",\"pubkey\":\"A BLS12-381 public key.\",\"signature\":\"A BLS12-381 signature.\",\"withdrawal_credentials\":\"Commitment to a public key for withdrawals.\"}},\"get_deposit_count()\":{\"returns\":{\"_0\":\"The deposit count encoded as a little endian 64-bit number.\"}},\"get_deposit_root()\":{\"returns\":{\"_0\":\"The deposit root hash.\"}}},\"version\":1},\"userdoc\":{\"events\":{\"DepositEvent(bytes,bytes,bytes,bytes,bytes)\":{\"notice\":\"A processed deposit event.\"}},\"kind\":\"user\",\"methods\":{\"deposit(bytes,bytes,bytes,bytes32)\":{\"notice\":\"Submit a Phase 0 DepositData object.\"},\"get_deposit_count()\":{\"notice\":\"Query the current deposit count.\"},\"get_deposit_root()\":{\"notice\":\"Query the current deposit root hash.\"}},\"notice\":\"This is the Ethereum 2.0 deposit contract interface. For more information see the Phase 0 specification under https://github.com/ethereum/eth2.0-specs\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/IDepositContract.sol\":\"IDepositContract\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/IDepositContract.sol\":{\"keccak256\":\"0x609c9406e00a2ea3d2eba2d046faeb266ed5daaf8c5c9567d75b0fdefaffdcc3\",\"license\":\"CC0-1.0\",\"urls\":[\"bzz-raw://50ed7dc163c88f12f92969117c0c5403ebccaded95772d15600bb379d8b3bede\",\"dweb:/ipfs/QmNW6GpwoaQW84hNqzSLPHmeTDLFAp7KA5GEnSWWpQz5Mg\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: CC0-1.0\n\npragma solidity ^0.8.0;\n\n// This interface is designed to be compatible with the Vyper version.\n/// @notice This is the Ethereum 2.0 deposit contract interface.\n/// For more information see the Phase 0 specification under https://github.com/ethereum/eth2.0-specs\ninterface IDepositContract {\n    /// @notice A processed deposit event.\n    event DepositEvent(\n        bytes pubkey,\n        bytes withdrawal_credentials,\n        bytes amount,\n        bytes signature,\n        bytes index\n    );\n\n    /// @notice Submit a Phase 0 DepositData object.\n    /// @param pubkey A BLS12-381 public key.\n    /// @param withdrawal_credentials Commitment to a public key for withdrawals.\n    /// @param signature A BLS12-381 signature.\n    /// @param deposit_data_root The SHA-256 hash of the SSZ-encoded DepositData object.\n    /// Used as a protection against malformed input.\n    function deposit(\n        bytes calldata pubkey,\n        bytes calldata withdrawal_credentials,\n        bytes calldata signature,\n        bytes32 deposit_data_root\n    ) external payable;\n\n    /// @notice Query the current deposit root hash.\n    /// @return The deposit root hash.\n    function get_deposit_root() external view returns (bytes32);\n\n    /// @notice Query the current deposit count.\n    /// @return The deposit count encoded as a little endian 64-bit number.\n    function get_deposit_count() external view returns (bytes memory);\n}\n",
+  "sourcePath": "/Users/apple/Documents/Coindelta/Projects/Eth-Batch-Deposit-Smart-Contract/contracts/interfaces/IDepositContract.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IDepositContract.sol",
+    "exportedSymbols": {
+      "IDepositContract": [
+        579
+      ]
+    },
+    "id": 580,
+    "license": "CC0-1.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 540,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IDepositContract",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 541,
+          "nodeType": "StructuredDocumentation",
+          "src": "133:167:1",
+          "text": "@notice This is the Ethereum 2.0 deposit contract interface.\n For more information see the Phase 0 specification under https://github.com/ethereum/eth2.0-specs"
+        },
+        "fullyImplemented": false,
+        "id": 579,
+        "linearizedBaseContracts": [
+          579
+        ],
+        "name": "IDepositContract",
+        "nameLocation": "310:16:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 542,
+              "nodeType": "StructuredDocumentation",
+              "src": "333:38:1",
+              "text": "@notice A processed deposit event."
+            },
+            "eventSelector": "649bbc62d0e31342afea4e5cd82d4049e7e1ee912fc0889aa790803be39038c5",
+            "id": 554,
+            "name": "DepositEvent",
+            "nameLocation": "382:12:1",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 553,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 544,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "pubkey",
+                  "nameLocation": "410:6:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 554,
+                  "src": "404:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 543,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "404:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 546,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "withdrawal_credentials",
+                  "nameLocation": "432:22:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 554,
+                  "src": "426:28:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 545,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "426:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 548,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "470:6:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 554,
+                  "src": "464:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 547,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "464:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 550,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "492:9:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 554,
+                  "src": "486:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 549,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "486:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 552,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "index",
+                  "nameLocation": "517:5:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 554,
+                  "src": "511:11:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 551,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "511:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "394:134:1"
+            },
+            "src": "376:153:1"
+          },
+          {
+            "documentation": {
+              "id": 555,
+              "nodeType": "StructuredDocumentation",
+              "src": "535:367:1",
+              "text": "@notice Submit a Phase 0 DepositData object.\n @param pubkey A BLS12-381 public key.\n @param withdrawal_credentials Commitment to a public key for withdrawals.\n @param signature A BLS12-381 signature.\n @param deposit_data_root The SHA-256 hash of the SSZ-encoded DepositData object.\n Used as a protection against malformed input."
+            },
+            "functionSelector": "22895118",
+            "id": 566,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deposit",
+            "nameLocation": "916:7:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 564,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 557,
+                  "mutability": "mutable",
+                  "name": "pubkey",
+                  "nameLocation": "948:6:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 566,
+                  "src": "933:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 556,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "933:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 559,
+                  "mutability": "mutable",
+                  "name": "withdrawal_credentials",
+                  "nameLocation": "979:22:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 566,
+                  "src": "964:37:1",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 558,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "964:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 561,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "1026:9:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 566,
+                  "src": "1011:24:1",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 560,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1011:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 563,
+                  "mutability": "mutable",
+                  "name": "deposit_data_root",
+                  "nameLocation": "1053:17:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 566,
+                  "src": "1045:25:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 562,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1045:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "923:153:1"
+            },
+            "returnParameters": {
+              "id": 565,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1093:0:1"
+            },
+            "scope": 579,
+            "src": "907:187:1",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 567,
+              "nodeType": "StructuredDocumentation",
+              "src": "1100:87:1",
+              "text": "@notice Query the current deposit root hash.\n @return The deposit root hash."
+            },
+            "functionSelector": "c5f2892f",
+            "id": 572,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "get_deposit_root",
+            "nameLocation": "1201:16:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 568,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1217:2:1"
+            },
+            "returnParameters": {
+              "id": 571,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 570,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 572,
+                  "src": "1243:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 569,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1243:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1242:9:1"
+            },
+            "scope": 579,
+            "src": "1192:60:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 573,
+              "nodeType": "StructuredDocumentation",
+              "src": "1258:120:1",
+              "text": "@notice Query the current deposit count.\n @return The deposit count encoded as a little endian 64-bit number."
+            },
+            "functionSelector": "621fd130",
+            "id": 578,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "get_deposit_count",
+            "nameLocation": "1392:17:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 574,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1409:2:1"
+            },
+            "returnParameters": {
+              "id": 577,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 576,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 578,
+                  "src": "1435:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 575,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1435:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1434:14:1"
+            },
+            "scope": 579,
+            "src": "1383:66:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 580,
+        "src": "300:1151:1",
+        "usedErrors": [],
+        "usedEvents": [
+          554
+        ]
+      }
+    ],
+    "src": "37:1415:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2023-11-08T12:16:19.178Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "deposit(bytes,bytes,bytes,bytes32)": {
+        "params": {
+          "deposit_data_root": "The SHA-256 hash of the SSZ-encoded DepositData object. Used as a protection against malformed input.",
+          "pubkey": "A BLS12-381 public key.",
+          "signature": "A BLS12-381 signature.",
+          "withdrawal_credentials": "Commitment to a public key for withdrawals."
+        }
+      },
+      "get_deposit_count()": {
+        "returns": {
+          "_0": "The deposit count encoded as a little endian 64-bit number."
+        }
+      },
+      "get_deposit_root()": {
+        "returns": {
+          "_0": "The deposit root hash."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "events": {
+      "DepositEvent(bytes,bytes,bytes,bytes,bytes)": {
+        "notice": "A processed deposit event."
+      }
+    },
+    "kind": "user",
+    "methods": {
+      "deposit(bytes,bytes,bytes,bytes32)": {
+        "notice": "Submit a Phase 0 DepositData object."
+      },
+      "get_deposit_count()": {
+        "notice": "Query the current deposit count."
+      },
+      "get_deposit_root()": {
+        "notice": "Query the current deposit root hash."
+      }
+    },
+    "notice": "This is the Ethereum 2.0 deposit contract interface. For more information see the Phase 0 specification under https://github.com/ethereum/eth2.0-specs",
+    "version": 1
+  }
+}
